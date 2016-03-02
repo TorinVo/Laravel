@@ -1,0 +1,15 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class ThanhVien extends Model{
+    protected $table = 'thanh_viens';
+
+    protected $fillable = [
+        'id', 'user', 'password','level',
+    ];
+
+    public $timestamps = false;
+}
