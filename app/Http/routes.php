@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 /*
@@ -31,7 +31,18 @@ Route::group(['middleware' => 'admin'], function () {
      * Cau Hinh Phan Admin
      */
     Route::group(['middleware' => 'auth:admin'], function() {
-        Route::get('/admin', 'Admin\AdminController@index');
+        Route::group(['prefix' => 'admin'], function() {
+            Route::get('/', 'Admin\AdminController@index');
+
+            //Category
+            Route::group(['prefix' => 'category'], function() {
+                Route::get('/', 'Admin\AdminCategoryController@index');
+                Route::get('add', 'Admin\AdminCategoryController@getAdd');
+                Route::post('save', 'Admin\AdminCategoryController@postSave');
+                Route::get('edit/{id}', ['as'=>'admin.category.getEdit','uses'=>'Admin\AdminCategoryController@getEdit']);
+                Route::get('delete/{id}', ['as'=>'admin.category.getDelete','uses'=>'Admin\AdminCategoryController@getDelete']);
+            });
+        });
     });
 
     Route::group(['middleware' => 'adminislogin'], function() {

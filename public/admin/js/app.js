@@ -10,7 +10,7 @@ $(function() {
 });
 
 $(function() {
-  return $('select').select2();
+  return $('.clt2').select2();
 });
 
 $(function() {
@@ -25,7 +25,18 @@ $(function() {
 
 $(function() {
   return $('.datatable').DataTable({
-    "dom": '<"top"fl<"clear">>rt<"bottom"ip<"clear">>'
+    "dom": '<"top"fl<"clear">>rt<"bottom"ip<"clear">>',
+    "bLengthChange": false,
+    "pageLength": 25,
+    "columnDefs": [{
+      "targets": 'no-sort',
+      "orderable": false,
+      "order": []
+    }],
+    language: {
+      search: "Tìm Kiếm",
+      searchPlaceholder: "Nhập Thứ Bạn Muốn Tìm"
+    }
   });
 });
 
@@ -34,3 +45,9 @@ $(function() {
     return $(".side-menu .nav .dropdown .collapse").collapse('hide');
   });
 });
+
+$('div.cls-error').delay(3000).slideUp();
+
+
+
+

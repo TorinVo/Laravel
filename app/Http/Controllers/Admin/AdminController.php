@@ -19,7 +19,8 @@ class AdminController extends Controller{
    	}
 
    	public function index(){
-        return view('admin.dashboard');
+        $cls_active = 'dashboard';
+        return view('admin.dashboard',compact('cls_active'));
     }
 
     public function getLogin(){
@@ -38,11 +39,10 @@ class AdminController extends Controller{
     	}
     	$data = ['email' => $request->get('email'), 'password' => $request->get('password')];
     	if(auth()->guard('admin')->attempt($data)){
-    		return redirect('/admin');
+            return redirect('/admin');
     	}else{
     		return redirect('/admin/login')
-    			->withErrors(['errors' => 'Login invalid'])
-    			->withInput();
+    			->with(['flash_message' => 'Login invalid']);
     	}
     }
 

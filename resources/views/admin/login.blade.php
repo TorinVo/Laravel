@@ -89,6 +89,11 @@
                             Log In...
                         </div>
                     </div>
+                    @if (Session::has('flash_message'))
+                        <div style="margin-top: 10px; text-align: center;" class="cls-error alert fresh-color alert-danger" role="alert">
+                            {!! Session::get('flash_message') !!}
+                        </div>
+                    @endif
                     <form method="POST" action="{{ url('/admin/login') }}">
                         {!! csrf_field() !!}
                         <div class="control{{ $errors->has('email') ? ' has-error' : '' }}">

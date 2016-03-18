@@ -19,9 +19,11 @@
     <!-- CSS App -->
     <link rel="stylesheet" type="text/css" href="{{ url('public/admin/css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url('public/admin/css/themes/flat-blue.css') }}">
+    <script type="text/javascript" src="{{ url('public/admin/lib/js/jquery.min.js') }}"></script>
 </head>
 
 <body class="flat-blue">
+    <a href="#" title="" id="div_confirm"></a>
     <div class="app-container">
         <div class="row content-container">
             <nav class="navbar navbar-default navbar-fixed-top navbar-top">
@@ -76,131 +78,46 @@
                             </button>
                         </div>
                         <ul class="nav navbar-nav">
-                            <li class="active">
-                                <a href="index.html">
+                            <li @if(isset($cls_active) && $cls_active == "dashboard")) class="active" @endif>
+                                <a href="{{ url('/admin') }}">
                                     <span class="icon fa fa-tachometer"></span><span class="title">Dashboard</span>
                                 </a>
                             </li>
-                            <li class="panel panel-default dropdown">
-                                <a data-toggle="collapse" href="#dropdown-element">
-                                    <span class="icon fa fa-desktop"></span><span class="title">UI Kits</span>
-                                </a>
-                                <!-- Dropdown level 1 -->
-                                <div id="dropdown-element" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <ul class="nav navbar-nav">
-                                            <li><a href="ui-kits/theming.html">Theming</a>
-                                            </li>
-                                            <li><a href="ui-kits/grid.html">Grid</a>
-                                            </li>
-                                            <li><a href="ui-kits/button.html">Buttons</a>
-                                            </li>
-                                            <li><a href="ui-kits/card.html">Cards</a>
-                                            </li>
-                                            <li><a href="ui-kits/list.html">Lists</a>
-                                            </li>
-                                            <li><a href="ui-kits/modal.html">Modals</a>
-                                            </li>
-                                            <li><a href="ui-kits/alert.html">Alerts & Toasts</a>
-                                            </li>
-                                            <li><a href="ui-kits/panel.html">Panels</a>
-                                            </li>
-                                            <li><a href="ui-kits/loader.html">Loaders</a>
-                                            </li>
-                                            <li><a href="ui-kits/step.html">Tabs & Steps</a>
-                                            </li>
-                                            <li><a href="ui-kits/other.html">Other</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="panel panel-default dropdown">
-                                <a data-toggle="collapse" href="#dropdown-table">
-                                    <span class="icon fa fa-table"></span><span class="title">Table</span>
-                                </a>
-                                <!-- Dropdown level 1 -->
-                                <div id="dropdown-table" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <ul class="nav navbar-nav">
-                                            <li><a href="table/table.html">Table</a>
-                                            </li>
-                                            <li><a href="table/datatable.html">Datatable</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="panel panel-default dropdown">
-                                <a data-toggle="collapse" href="#dropdown-form">
-                                    <span class="icon fa fa-file-text-o"></span><span class="title">Form</span>
-                                </a>
-                                <!-- Dropdown level 1 -->
-                                <div id="dropdown-form" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <ul class="nav navbar-nav">
-                                            <li><a href="form/ui-kits.html">Form UI Kits</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                            <!-- Dropdown-->
-                            <li class="panel panel-default dropdown">
-                                <a data-toggle="collapse" href="#component-example">
-                                    <span class="icon fa fa-cubes"></span><span class="title">Components</span>
-                                </a>
-                                <!-- Dropdown level 1 -->
-                                <div id="component-example" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <ul class="nav navbar-nav">
-                                            <li><a href="components/pricing-table.html">Pricing Table</a>
-                                            </li>
-                                            <li><a href="components/chartjs.html">Chart.JS</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                            <!-- Dropdown-->
-                            <li class="panel panel-default dropdown">
-                                <a data-toggle="collapse" href="#dropdown-example">
-                                    <span class="icon fa fa-slack"></span><span class="title">Page Example</span>
-                                </a>
-                                <!-- Dropdown level 1 -->
-                                <div id="dropdown-example" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <ul class="nav navbar-nav">
-                                            <li><a href="pages/login.html">Login</a>
-                                            </li>
-                                            <li><a href="pages/index.html">Landing Page</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                            <!-- Dropdown-->
-                            <li class="panel panel-default dropdown">
-                                <a data-toggle="collapse" href="#dropdown-icon">
-                                    <span class="icon fa fa-archive"></span><span class="title">Icons</span>
-                                </a>
-                                <!-- Dropdown level 1 -->
-                                <div id="dropdown-icon" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <ul class="nav navbar-nav">
-                                            <li><a href="icons/glyphicons.html">Glyphicons</a>
-                                            </li>
-                                            <li><a href="icons/font-awesome.html">Font Awesomes</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="license.html">
-                                    <span class="icon fa fa-thumbs-o-up"></span><span class="title">License</span>
+                            <li @if(isset($cls_active) && $cls_active == "category")) class="active" @endif>
+                                <a href="{{ url('/admin/category/') }}">
+                                    <span class="icon fa fa-th-list"></span><span class="title">Category</span>
                                 </a>
                             </li>
+                            <?php
+                                $cate_parent = App\Models\Cate::where('parent', 0)->get()->toArray();
+
+                            ?>
+                            @if(!empty($cate_parent))
+                                @foreach ($cate_parent as $key => $value)
+                                    <?php
+                                        $cate_child = App\Models\Cate::where('parent', $value['id'])->get()->toArray();
+                                    ?>
+                                    <li @if(!empty($cate_child)) class="panel panel-default dropdown" @endif>
+                                        <a @if(!empty($cate_child)) data-toggle="collapse" href="#dropdown-{!! $key !!}" @else href="" @endif>
+                                            <span class="icon fa fa-desktop"></span><span class="title">{!! $value['name'] !!}</span>
+                                        </a>
+                                        @if(!empty($cate_child))
+                                        <!-- Dropdown level 1 -->
+                                        <div id="dropdown-{!! $key !!}" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                <ul class="nav navbar-nav">
+                                                    @foreach ($cate_child as $key_child => $m_child)
+                                                    <li>
+                                                        <a href="#">{!!$m_child['name']!!}</a>
+                                                    </li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        @endif
+                                    </li>
+                                @endforeach
+                            @endif
                         </ul>
                     </div>
                     <!-- /.navbar-collapse -->
@@ -219,21 +136,24 @@
             </div>
         </footer>
         <div>
-            <!-- Javascript Libs -->
-            <script type="text/javascript" src="{{ url('public/admin/lib/js/jquery.min.js') }}"></script>
-            <script type="text/javascript" src="{{ url('public/admin/lib/js/bootstrap.min.js') }}"></script>
-            <script type="text/javascript" src="{{ url('public/admin/lib/js/Chart.min.js') }}"></script>
-            <script type="text/javascript" src="{{ url('public/admin/lib/js/bootstrap-switch.min.js') }}"></script>
-            <script type="text/javascript" src="{{ url('public/admin/lib/js/jquery.matchHeight-min.js') }}"></script>
-            <script type="text/javascript" src="{{ url('public/admin/lib/js/jquery.dataTables.min.js') }}"></script>
-            <script type="text/javascript" src="{{ url('public/admin/lib/js/dataTables.bootstrap.min.js') }}"></script>
-            <script type="text/javascript" src="{{ url('public/admin/lib/js/select2.full.min.js') }}"></script>
-            <script type="text/javascript" src="{{ url('public/admin/lib/js/ace/ace.js') }}"></script>
-            <script type="text/javascript" src="{{ url('public/admin/lib/js/ace/mode-html.js') }}"></script>
-            <script type="text/javascript" src="{{ url('public/admin/lib/js/ace/theme-github.js') }}"></script>
-            <!-- Javascript -->
-            <script type="text/javascript" src="{{ url('public/admin/js/app.js') }}"></script>
-            <script type="text/javascript" src="{{ url('public/admin/js/index.js') }}"></script>
+        <!-- Javascript Libs -->
+        <script type="text/javascript" src="{{ url('public/admin/lib/js/bootstrap.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url('public/admin/lib/js/Chart.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url('public/admin/lib/js/bootstrap-switch.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url('public/admin/lib/js/jquery.matchHeight-min.js') }}"></script>
+        <script type="text/javascript" src="{{ url('public/admin/lib/js/jquery.dataTables.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url('public/admin/lib/js/dataTables.bootstrap.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url('public/admin/lib/js/select2.full.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url('public/admin/lib/js/ace/ace.js') }}"></script>
+        <script type="text/javascript" src="{{ url('public/admin/lib/js/ace/mode-html.js') }}"></script>
+        <script type="text/javascript" src="{{ url('public/admin/lib/js/ace/theme-github.js') }}"></script>
+        <script type="text/javascript" src="{{ url('public/admin/js/confirm-bootstrap.js') }}"></script>
+        <!-- Javascript -->
+        <script type="text/javascript" src="{{ url('public/admin/js/app.js') }}"></script>
+        <script type="text/javascript" src="{{ url('public/admin/js/index.js') }}"></script>
+        <script type="text/javascript">
+            var APP_URL = {!! json_encode(url('/')) !!};
+        </script>
 </body>
 
 </html>
